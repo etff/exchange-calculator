@@ -1,6 +1,6 @@
-package com.exchange.calulator.currency.infra;
+package com.exchange.calculator.currency.infra;
 
-import com.exchange.calulator.currency.dto.CurrencyResponse;
+import com.exchange.calculator.currency.dto.CurrencyResponse;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

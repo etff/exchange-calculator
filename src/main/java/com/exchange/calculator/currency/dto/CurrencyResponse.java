@@ -1,4 +1,4 @@
-package com.exchange.calulator.currency.dto;
+package com.exchange.calculator.currency.dto;
 
 import lombok.Getter;
 

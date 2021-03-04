@@ -1,6 +1,6 @@
-package com.exchange.calulator.currency.infra;
+package com.exchange.calculator.currency.infra;
 
-import com.exchange.calulator.currency.dto.CurrencyResponse;
+import com.exchange.calculator.currency.dto.CurrencyResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
