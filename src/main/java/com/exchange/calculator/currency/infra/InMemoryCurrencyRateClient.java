@@ -29,6 +29,7 @@ public class InMemoryCurrencyRateClient implements CurrencyRateClient {
         return "{\"success\": \"true\", \"terms\":\"https:\\/\\/currencylayer.com\\/terms\", " +
                 "\"timestamp\":1545881647, \"source\":\"USD\", " +
                 "\"privacy\":\"https:\\/\\/currencylayer.com\\/privacy\", " +
-                "\"quotes\": {\"USDAED\":3.673197, \"USDAFN\":76.088502}}";
+                "\"quotes\": {\"USDAED\":3.673197, \"USDAFN\":76.088502, \"USDKRW\":1121.419945, " +
+                "\"USDJPY\":110.959498 , \"USDPHP\":52.72027}}";
     }
 }
