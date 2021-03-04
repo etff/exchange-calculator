@@ -16,7 +16,7 @@ public class CurrencyRestController {
     private final CurrencyApplication currencyApplication;
 
     @GetMapping
-    public CurrencyResponse getCurrency(@RequestParam(value = "source", required = false) String source) {
-        return currencyApplication.getCurrencyData();
+    public CurrencyResponse getCurrency(@RequestParam(value = "target", required = false) String target) {
+        return currencyApplication.getCurrencyData(target);
     }
 }

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class InMemoryCurrencyRateClient implements CurrencyRateClient {
 
     @Override
-    public CurrencyResponse retrieveCurrency() {
+    public CurrencyResponse retrieveCurrency(String target) {
         ObjectMapper mapper = new ObjectMapper();
         String sample = getSampleData();
         CurrencyResponse currencyResponse = null;

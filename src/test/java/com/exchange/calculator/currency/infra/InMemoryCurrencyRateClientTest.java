@@ -12,7 +12,7 @@ class InMemoryCurrencyRateClientTest {
     void test() {
         InMemoryCurrencyRateClient inmemoryCurrencyRateAPI = new InMemoryCurrencyRateClient();
 
-        CurrencyResponse actual = inmemoryCurrencyRateAPI.retrieveCurrency();
+        CurrencyResponse actual = inmemoryCurrencyRateAPI.retrieveCurrency("KRW");
 
         assertThat(actual).isNotNull();
     }

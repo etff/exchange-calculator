@@ -2,6 +2,7 @@ package com.exchange.calculator.currency.dto;
 
 import lombok.Getter;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,5 +13,5 @@ public class CurrencyResponse {
     private String privacy;
     private int timestamp;
     private String source;
-    private Map<String, Object> quotes = new HashMap<>();
+    private Map<String, BigDecimal> quotes = new HashMap<>();
 }
