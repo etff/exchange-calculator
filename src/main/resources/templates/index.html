@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>환율 계산</h1>
+<br />
+<form th:action="@{/result}" th:object="${currency}" method="post">
+    <p>송금국가: 미국(USD)</p>
+    <p>수취국가: <input type="text" th:field="*{target}"/></p>
+    <p>송금액: <input type="number" th:field="*{amount}"/></p>
+    <p><input type="submit" value="Submit"/></p>
+</form>
+
+</body>
+</html>
