@@ -12,6 +12,6 @@ public class CurrencyRequest {
     private String target;
 
     @Positive(message = "송금액이 바르지 않습니다")
-    @Max(value = 10000, message = "aaaa")
+    @Max(value = 10000, message = "송금액이 바르지 않습니다")
     private int amount;
 }

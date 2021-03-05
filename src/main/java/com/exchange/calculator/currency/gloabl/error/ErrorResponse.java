@@ -1,4 +1,4 @@
-package com.exchange.calculator.currency.dto;
+package com.exchange.calculator.currency.gloabl.error;
 
 import lombok.AccessLevel;
 import lombok.Getter;
