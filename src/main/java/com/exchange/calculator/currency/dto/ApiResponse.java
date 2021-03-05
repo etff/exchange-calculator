@@ -3,6 +3,7 @@ package com.exchange.calculator.currency.dto;
 import lombok.Getter;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -23,6 +24,6 @@ public class ApiResponse {
         if (amount.isEmpty()) {
             return BigDecimal.ZERO;
         }
-        return amount.get();
+        return amount.get().setScale(2, RoundingMode.FLOOR);
     }
 }

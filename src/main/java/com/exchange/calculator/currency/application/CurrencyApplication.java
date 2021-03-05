@@ -5,11 +5,13 @@ import com.exchange.calculator.currency.dto.CurrencyRequest;
 import com.exchange.calculator.currency.dto.CurrencyResponse;
 import com.exchange.calculator.currency.infra.CurrencyRateClient;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class CurrencyApplication {
     private final CurrencyRateClient currencyRateClient;
@@ -19,13 +21,18 @@ public class CurrencyApplication {
         return new CurrencyResponse(apiResponse.isSuccess(), apiResponse.getAmount(unit));
     }
 
-    public CurrencyResponse calculateCurrency(CurrencyRequest currencyRequest) {
+    public CurrencyResponse calculateCurrency(CurrencyRequest request) {
         ApiResponse apiResponse = getApiResponse();
-
-        return null;
+        BigDecimal result = apiResponse.getAmount(request.getUnit()).multiply(request.getAmount());
+        return new CurrencyResponse(apiResponse.isSuccess(), result);
     }
 
     private ApiResponse getApiResponse() {
-        return currencyRateClient.retrieveCurrency();
+        try {
+            return currencyRateClient.retrieveCurrency();
+        } catch (Exception e) {
+            log.info(e.getMessage());
+            return new ApiResponse();
+        }
     }
 }

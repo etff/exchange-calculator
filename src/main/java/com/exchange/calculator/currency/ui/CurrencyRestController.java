@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.math.BigDecimal;
 
 @RestController
 @RequestMapping("/api/currency")
@@ -22,9 +21,7 @@ public class CurrencyRestController {
     }
 
     @PostMapping("/calculate")
-    public CurrencyResponse calculate(@Valid  @RequestBody CurrencyRequest currency) {
-
-
-        return new CurrencyResponse(true, BigDecimal.TEN);
+    public CurrencyResponse calculate(@Valid  @RequestBody CurrencyRequest request) {
+        return currencyApplication.calculateCurrency(request);
     }
 }
