@@ -6,10 +6,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+/**
+ * 메모리상의 환율 정보를 가져옵니다.
+ */
 @Component
 @Slf4j
 public class InMemoryCurrencyRateClient implements CurrencyRateClient {
 
+    /**
+     * 환율 정보를 가져옵니다.
+     */
     @Override
     public ApiResponse retrieveCurrency() {
         ObjectMapper mapper = new ObjectMapper();

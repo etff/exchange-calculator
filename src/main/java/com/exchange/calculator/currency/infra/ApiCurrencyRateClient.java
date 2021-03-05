@@ -16,6 +16,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.Charset;
 
+/**
+ * 외부 API를 이용해 환율정보를 가져옵니다.
+ */
 @Component
 @Primary
 @Slf4j
@@ -25,6 +28,11 @@ public class ApiCurrencyRateClient implements CurrencyRateClient {
     @Value("${currency-layer.key}")
     private String serviceKey;
 
+    /**
+     * 환율 정보를 가져옵니다.
+     * @return API 응답결과
+     * @throws UnsupportedEncodingException
+     */
     @Override
     public ApiResponse retrieveCurrency() throws UnsupportedEncodingException {
         final ObjectMapper mapper = new ObjectMapper();

@@ -5,6 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+/**
+ * 환율에 대한 화면 요청을 처리한다.
+ */
 @Controller
 public class CurrencyController {
 
