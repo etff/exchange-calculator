@@ -18,16 +18,17 @@ public class InMemoryCurrencyRateClient implements CurrencyRateClient {
      */
     @Override
     public ApiResponse retrieveCurrency() {
-        ObjectMapper mapper = new ObjectMapper();
-        String sample = getSampleData();
-        ApiResponse ApiResponse = null;
+        final ObjectMapper mapper = new ObjectMapper();
+        final String sample = getSampleData();
+        ApiResponse apiResponse;
 
         try {
-            ApiResponse = mapper.readValue(sample, ApiResponse.class);
+            apiResponse = mapper.readValue(sample, ApiResponse.class);
         } catch (JsonProcessingException e) {
             log.info(e.getMessage());
+            apiResponse = new ApiResponse();
         }
-        return ApiResponse;
+        return apiResponse;
     }
 
     public String getSampleData() {
