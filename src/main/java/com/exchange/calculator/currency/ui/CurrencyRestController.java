@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
 
 @RestController
 @RequestMapping("/api/currency")
@@ -16,12 +17,12 @@ public class CurrencyRestController {
     private final CurrencyApplication currencyApplication;
 
     @GetMapping
-    public CurrencyResponse getCurrency(@RequestParam(value = "unit", required = false) String unit) {
+    public CurrencyResponse getCurrency(@RequestParam(value = "unit", required = false) String unit) throws UnsupportedEncodingException {
         return currencyApplication.getCurrencyData(unit);
     }
 
     @PostMapping("/calculate")
-    public CurrencyResponse calculate(@Valid  @RequestBody CurrencyRequest request) {
+    public CurrencyResponse calculate(@Valid  @RequestBody CurrencyRequest request) throws UnsupportedEncodingException {
         return currencyApplication.calculateCurrency(request);
     }
 }
