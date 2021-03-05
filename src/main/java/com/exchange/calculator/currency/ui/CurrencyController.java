@@ -13,5 +13,4 @@ public class CurrencyController {
         model.addAttribute("currency", new CurrencyRequest());
         return "index";
     }
-
 }

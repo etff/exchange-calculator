@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 
 @Service
@@ -16,23 +17,18 @@ import java.math.BigDecimal;
 public class CurrencyApplication {
     private final CurrencyRateClient currencyRateClient;
 
-    public CurrencyResponse getCurrencyData(String unit) {
-        ApiResponse apiResponse = getApiResponse();
+    public CurrencyResponse getCurrencyData(String unit) throws UnsupportedEncodingException {
+        final ApiResponse apiResponse = getApiResponse();
         return new CurrencyResponse(apiResponse.isSuccess(), apiResponse.getAmount(unit));
     }
 
-    public CurrencyResponse calculateCurrency(CurrencyRequest request) {
-        ApiResponse apiResponse = getApiResponse();
-        BigDecimal result = apiResponse.getAmount(request.getUnit()).multiply(request.getAmount());
+    public CurrencyResponse calculateCurrency(CurrencyRequest request) throws UnsupportedEncodingException {
+        final ApiResponse apiResponse = getApiResponse();
+        final BigDecimal result = apiResponse.getAmount(request.getUnit()).multiply(request.getAmount());
         return new CurrencyResponse(apiResponse.isSuccess(), result);
     }
 
-    private ApiResponse getApiResponse() {
-        try {
-            return currencyRateClient.retrieveCurrency();
-        } catch (Exception e) {
-            log.info(e.getMessage());
-            return new ApiResponse();
-        }
+    private ApiResponse getApiResponse() throws UnsupportedEncodingException {
+        return currencyRateClient.retrieveCurrency();
     }
 }
