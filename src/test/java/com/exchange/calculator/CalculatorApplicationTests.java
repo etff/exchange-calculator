@@ -1,10 +1,10 @@
-package com.exchange.calulator;
+package com.exchange.calculator;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CalulatorApplicationTests {
+class CalculatorApplicationTests {
 
     @Test
     void contextLoads() {
