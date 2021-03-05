@@ -1,15 +1,16 @@
 package com.exchange.calculator.currency.ui;
 
 import com.exchange.calculator.currency.application.CurrencyApplication;
+import com.exchange.calculator.currency.dto.CurrencyRequest;
 import com.exchange.calculator.currency.dto.CurrencyResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.math.BigDecimal;
 
 @RestController
-@RequestMapping("/currency")
+@RequestMapping("/api/currency")
 @RequiredArgsConstructor
 public class CurrencyRestController {
 
@@ -18,5 +19,10 @@ public class CurrencyRestController {
     @GetMapping
     public CurrencyResponse getCurrency(@RequestParam(value = "target", required = false) String target) {
         return currencyApplication.getCurrencyData(target);
+    }
+
+    @PostMapping("/calculate")
+    public CurrencyResponse calculate(@Valid  @RequestBody CurrencyRequest currency) {
+        return new CurrencyResponse(true, BigDecimal.TEN);
     }
 }

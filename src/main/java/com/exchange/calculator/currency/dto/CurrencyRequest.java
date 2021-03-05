@@ -1,17 +1,17 @@
 package com.exchange.calculator.currency.dto;
 
 import lombok.Getter;
-import lombok.Setter;
 
 import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 
 @Getter
-@Setter
 public class CurrencyRequest {
+    @NotBlank
     private String target;
 
-    @Positive
-    @Max(value = 10000)
+    @Positive(message = "송금액이 바르지 않습니다")
+    @Max(value = 10000, message = "aaaa")
     private int amount;
 }

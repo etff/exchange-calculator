@@ -14,8 +14,9 @@
         </select></p>
         <p id="rate"></p>
         <p>송금액: <input type="number" th:field="*{amount}"/></p>
-        <p><input type="submit" value="Submit" class="btn-primary"/></p>
+        <p><button type="button" id="send" value="Submit" class="btn-primary"/>Submit</p>
     </form>
+    <p id="result"></p>
     <div th:replace="fragment/footer"/>
 </div>
 </body>
