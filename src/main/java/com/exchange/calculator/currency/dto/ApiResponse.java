@@ -1,6 +1,8 @@
 package com.exchange.calculator.currency.dto;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -12,9 +14,10 @@ import java.util.Optional;
  * API 응답데이터.
  */
 @Getter
+@NoArgsConstructor
 public class ApiResponse {
-    private final String PREFIX = "USD";
-    private final int DECIMAL_POINT = 2;
+    private static final String PREFIX = "USD";
+    private static final int DECIMAL_POINT = 2;
 
     /**
      * 응답 성공 여부.
@@ -44,6 +47,16 @@ public class ApiResponse {
      * 기준 화폐 대비 환율 정보.
      */
     private Map<String, BigDecimal> quotes = new HashMap<>();
+
+    @Builder
+    public ApiResponse(boolean success, String terms, String privacy, int timestamp, String source, Map<String, BigDecimal> quotes) {
+        this.success = success;
+        this.terms = terms;
+        this.privacy = privacy;
+        this.timestamp = timestamp;
+        this.source = source;
+        this.quotes = quotes;
+    }
 
     public BigDecimal getAmount(String unit) {
         Optional<BigDecimal> amount = Optional.ofNullable(quotes.get(PREFIX + unit));

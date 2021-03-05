@@ -23,8 +23,8 @@ import java.nio.charset.Charset;
 @Primary
 @Slf4j
 public class ApiCurrencyRateClient implements CurrencyRateClient {
-    private static String BASE_URL = "http://www.apilayer.net/api/live";
-    private static String UTF8 = "UTF-8";
+    private static final String BASE_URL = "http://www.apilayer.net/api/live";
+    private static final String UTF8 = "UTF-8";
 
     @Value("${currency-layer.key}")
     private String serviceKey;
