@@ -14,6 +14,7 @@ import java.util.Optional;
 @Getter
 public class ApiResponse {
     private final String PREFIX = "USD";
+    private final int DECIMAL_POINT = 2;
 
     /**
      * 응답 성공 여부.
@@ -49,6 +50,6 @@ public class ApiResponse {
         if (amount.isEmpty()) {
             return BigDecimal.ZERO;
         }
-        return amount.get().setScale(2, RoundingMode.FLOOR);
+        return amount.get().setScale(DECIMAL_POINT, RoundingMode.FLOOR);
     }
 }

@@ -24,6 +24,7 @@ import java.nio.charset.Charset;
 @Slf4j
 public class ApiCurrencyRateClient implements CurrencyRateClient {
     private static String BASE_URL = "http://www.apilayer.net/api/live";
+    private static String UTF8 = "UTF-8";
 
     @Value("${currency-layer.key}")
     private String serviceKey;
@@ -50,10 +51,10 @@ public class ApiCurrencyRateClient implements CurrencyRateClient {
     }
 
     private ResponseEntity<String> getCurrencyFromApi() throws UnsupportedEncodingException {
-        final String decodeServiceKey = URLDecoder.decode(serviceKey, "UTF-8");
+        final String decodeServiceKey = URLDecoder.decode(serviceKey, UTF8);
         final RestTemplate restTemplate = new RestTemplate();
         final HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));    //Response Header to UTF-8
+        headers.setContentType(new MediaType("application", "json", Charset.forName(UTF8)));    //Response Header to UTF-8
 
         UriComponents builder = UriComponentsBuilder.fromHttpUrl(BASE_URL)
                 .queryParam("access_key", decodeServiceKey)
