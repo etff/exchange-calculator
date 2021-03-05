@@ -1,6 +1,6 @@
 package com.exchange.calculator.currency.infra;
 
-import com.exchange.calculator.currency.dto.CurrencyResponse;
+import com.exchange.calculator.currency.dto.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -11,18 +11,18 @@ import org.springframework.stereotype.Component;
 public class InMemoryCurrencyRateClient implements CurrencyRateClient {
 
     @Override
-    public CurrencyResponse retrieveCurrency(String target) {
+    public ApiResponse retrieveCurrency(String target) {
         ObjectMapper mapper = new ObjectMapper();
         String sample = getSampleData();
-        CurrencyResponse currencyResponse = null;
+        ApiResponse APiResponse = null;
 
         try {
-            currencyResponse = mapper.readValue(sample, CurrencyResponse.class);
+            APiResponse = mapper.readValue(sample, ApiResponse.class);
 
         } catch (JsonProcessingException e) {
             log.info(e.getMessage());
         }
-        return currencyResponse;
+        return APiResponse;
     }
 
     public String getSampleData() {

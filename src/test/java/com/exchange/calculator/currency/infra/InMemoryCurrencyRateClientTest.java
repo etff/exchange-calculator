@@ -1,6 +1,6 @@
 package com.exchange.calculator.currency.infra;
 
-import com.exchange.calculator.currency.dto.CurrencyResponse;
+import com.exchange.calculator.currency.dto.ApiResponse;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -12,7 +12,7 @@ class InMemoryCurrencyRateClientTest {
     void test() {
         InMemoryCurrencyRateClient inmemoryCurrencyRateAPI = new InMemoryCurrencyRateClient();
 
-        CurrencyResponse actual = inmemoryCurrencyRateAPI.retrieveCurrency("KRW");
+        ApiResponse actual = inmemoryCurrencyRateAPI.retrieveCurrency("KRW");
 
         assertThat(actual).isNotNull();
     }

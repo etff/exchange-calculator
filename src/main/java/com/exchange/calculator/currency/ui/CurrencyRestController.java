@@ -1,6 +1,7 @@
 package com.exchange.calculator.currency.ui;
 
 import com.exchange.calculator.currency.application.CurrencyApplication;
+import com.exchange.calculator.currency.dto.ApiResponse;
 import com.exchange.calculator.currency.dto.CurrencyResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,7 +1,7 @@
 package com.exchange.calculator.currency.infra;
 
-import com.exchange.calculator.currency.dto.CurrencyResponse;
+import com.exchange.calculator.currency.dto.ApiResponse;
 
 public interface CurrencyRateClient {
-    CurrencyResponse retrieveCurrency(String target);
+    ApiResponse retrieveCurrency(String target);
 }
