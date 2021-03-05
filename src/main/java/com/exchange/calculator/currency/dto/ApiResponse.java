@@ -9,6 +9,8 @@ import java.util.Optional;
 
 @Getter
 public class ApiResponse {
+    private final String PREFIX = "USD";
+
     private boolean success;
     private String terms;
     private String privacy;
@@ -17,7 +19,7 @@ public class ApiResponse {
     private Map<String, BigDecimal> quotes = new HashMap<>();
 
     public BigDecimal getAmount(String unit) {
-        Optional<BigDecimal> amount = Optional.ofNullable(quotes.get(unit));
+        Optional<BigDecimal> amount = Optional.ofNullable(quotes.get(PREFIX + unit));
         if (amount.isEmpty()) {
             return BigDecimal.ZERO;
         }

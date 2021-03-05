@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 public class ErrorResponse {
     private boolean success;
     private String message;
-    private Object data;
 
     public ErrorResponse(boolean success, String message) {
         this.success = success;

@@ -17,7 +17,7 @@ public class CurrencyResponse {
     }
 
     public String getAmount() {
-        DecimalFormat df = new DecimalFormat("#,###.00");
+        DecimalFormat df = new DecimalFormat("#,###.##");
         return df.format(amount);
     }
 }

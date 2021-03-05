@@ -17,12 +17,14 @@ public class CurrencyRestController {
     private final CurrencyApplication currencyApplication;
 
     @GetMapping
-    public CurrencyResponse getCurrency(@RequestParam(value = "target", required = false) String target) {
-        return currencyApplication.getCurrencyData(target);
+    public CurrencyResponse getCurrency(@RequestParam(value = "unit", required = false) String unit) {
+        return currencyApplication.getCurrencyData(unit);
     }
 
     @PostMapping("/calculate")
     public CurrencyResponse calculate(@Valid  @RequestBody CurrencyRequest currency) {
+
+
         return new CurrencyResponse(true, BigDecimal.TEN);
     }
 }

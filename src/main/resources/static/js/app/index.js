@@ -2,7 +2,7 @@ var main = {
     init : function() {
         var _this = this;
 
-        $("#target").on("change", function() {
+        $("#unit").on("change", function() {
             _this.retrieve();
         });
 
@@ -18,7 +18,7 @@ var main = {
             type: 'GET',
             url: '/api/currency',
             dataType: 'json',
-            data: { target : unit},
+            data: { unit : unit},
             contentType:'application/json; charset=utf-8',
         }).done(function(data) {
             if (data) {
@@ -35,16 +35,15 @@ var main = {
         });
     },
     retrieve: function() {
-        var unit = $("#target").val();
+        var unit = $("#unit").val();
         $.ajax({
             type: 'GET',
             url: '/api/currency',
             dataType: 'json',
-            data: { target : unit},
+            data: { unit : unit},
             contentType:'application/json; charset=utf-8',
         }).done(function(data) {
-            var result = data;
-            var amount = result.amount.replace(/['"]+/g, '');
+            var amount = data.amount.replace(/['"]+/g, '');
             $("#rate").html(`환율 : ${amount} ${unit}/USD`);
 
         }).fail(function (error) {
@@ -52,10 +51,10 @@ var main = {
         });
     },
     send : function() {
-        var unit = $("#target").val();
+        var unit = $("#unit").val();
 
         var param = {
-            target: $('#target').val(),
+            unit: $('#unit').val(),
             amount: $('#amount').val()
         };
 
