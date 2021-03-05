@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<head th:replace="fragment/header"></head>
 <body>
 <h1>환율 계산</h1>
 <br />
@@ -13,6 +10,6 @@
     <p>송금액: <input type="number" th:field="*{amount}"/></p>
     <p><input type="submit" value="Submit"/></p>
 </form>
-
+<div th:replace="fragment/footer" />
 </body>
 </html>
