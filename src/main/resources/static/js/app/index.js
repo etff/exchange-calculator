@@ -17,12 +17,12 @@ var main = {
         $.ajax({
             type: 'GET',
             url: '/api/currency',
-            dataType: 'text',
+            dataType: 'json',
             data: { target : unit},
             contentType:'application/json; charset=utf-8',
         }).done(function(data) {
             if (data) {
-                var result = JSON.parse(data);
+                var result = data;
                 var apiSuccess = result.success;
                 if (apiSuccess) {
                     var amount = result.amount.replace(/['"]+/g, '');
@@ -39,11 +39,11 @@ var main = {
         $.ajax({
             type: 'GET',
             url: '/api/currency',
-            dataType: 'text',
+            dataType: 'json',
             data: { target : unit},
             contentType:'application/json; charset=utf-8',
         }).done(function(data) {
-            var result = JSON.parse(data);
+            var result = data;
             var amount = result.amount.replace(/['"]+/g, '');
             $("#rate").html(`환율 : ${amount} ${unit}/USD`);
 
@@ -52,7 +52,9 @@ var main = {
         });
     },
     send : function() {
-        var data = {
+        var unit = $("#target").val();
+
+        var param = {
             target: $('#target').val(),
             amount: $('#amount').val()
         };
@@ -62,9 +64,12 @@ var main = {
             url: '/api/currency/calculate',
             dataType: 'json',
             contentType:'application/json; charset=utf-8',
-            data: JSON.stringify(data)
-        }).done(function(result) {
-            console.log(result);
+            data: JSON.stringify(param)
+        }).done(function(data) {
+            var amount = data.amount.replace(/['"]+/g, '');
+
+            $("#result").html(`수취금액은 ${amount} ${unit} 입니다.`);
+
         }).fail(function (error) {
             alert(error.responseJSON.message);
         });

@@ -4,7 +4,7 @@
 <body>
 <div class="container">
     <h1>환율 계산</h1>
-    <br/>
+    <br />
     <form th:action="@{/result}" th:object="${currency}" method="post">
         <p>송금국가: 미국(USD)</p>
         <p>수취국가: <select th:field="*{target}">
@@ -13,10 +13,12 @@
             <option th:value="'PHP'" th:text="|필리핀 (PHP)|"></option>
         </select></p>
         <p id="rate"></p>
+        <input hidden="hidden" />
         <p>송금액: <input type="number" th:field="*{amount}"/></p>
-        <p><button type="button" id="send" value="Submit" class="btn-primary"/>Submit</p>
+        <button type="button" id="send" value="Submit" class="btn-primary"/>Submit</button>
     </form>
-    <p id="result"></p>
+    <br />
+    <h2 id="result"></h2>
     <div th:replace="fragment/footer"/>
 </div>
 </body>
