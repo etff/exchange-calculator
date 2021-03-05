@@ -10,39 +10,24 @@ var main = {
             _this.send();
         });
 
-        _this.load();
+        _this.initData();
     },
-    load : function() {
+    initData : function() {
         var unit = "KRW";
-        $.ajax({
-            type: 'GET',
-            url: '/api/currency',
-            dataType: 'json',
-            data: { unit : unit},
-            contentType:'application/json; charset=utf-8',
-        }).done(function(data) {
-            if (data) {
-                var result = data;
-                var apiSuccess = result.success;
-                if (apiSuccess) {
-                    var amount = result.amount.replace(/['"]+/g, '');
-                    $("#rate").html(`환율 : ${amount} ${unit}/USD`);
-                }
-            }
-
-        }).fail(function (error) {
-            alert(error.responseJSON.message);
-        });
+        this.getCurrencyData(unit);
     },
     retrieve: function() {
         var unit = $("#unit").val();
+        this.getCurrencyData(unit);
+    },
+    getCurrencyData: function (unit) {
         $.ajax({
             type: 'GET',
             url: '/api/currency',
             dataType: 'json',
-            data: { unit : unit},
-            contentType:'application/json; charset=utf-8',
-        }).done(function(data) {
+            data: {unit: unit},
+            contentType: 'application/json; charset=utf-8',
+        }).done(function (data) {
             var amount = data.amount.replace(/['"]+/g, '');
             $("#rate").html(`환율 : ${amount} ${unit}/USD`);
 
