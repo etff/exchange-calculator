@@ -10,7 +10,7 @@ class CurrencyResponseTest {
 
     @Test
     void currencyConvert() {
-        CurrencyResponse currencyResponse = new CurrencyResponse(new BigDecimal(1234));
+        CurrencyResponse currencyResponse = new CurrencyResponse(true, new BigDecimal(1234));
 
         assertThat(currencyResponse.getAmount()).isEqualTo("1,234.00");
     }

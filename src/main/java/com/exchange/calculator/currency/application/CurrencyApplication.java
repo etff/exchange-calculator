@@ -17,6 +17,6 @@ public class CurrencyApplication {
     public CurrencyResponse getCurrencyData(String target) {
         ApiResponse apiResponse = currencyRateClient.retrieveCurrency(target);
         BigDecimal amount = apiResponse.getAmount(PREFIX + target);
-        return new CurrencyResponse(amount);
+        return new CurrencyResponse(apiResponse.isSuccess(), amount);
     }
 }

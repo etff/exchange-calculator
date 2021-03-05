@@ -12,6 +12,6 @@ public class CurrencyRequest {
     private String target;
 
     @Positive
-    @Max(10000)
+    @Max(value = 10000)
     private int amount;
 }
