@@ -107,7 +107,7 @@ class CurrencyRestControllerTest {
                 request = new CurrencyRequest("KRW", BigDecimal.valueOf(1000_000));
             }
 
-            @DisplayName("200 OK 와 환율 정보 응답한다.")
+            @DisplayName("400 Bad Request를 응답한다.")
             @Test
             void It_responds_bad_request() throws Exception {
                 mockMvc.perform(post("/api/currency/calculate")

@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class CurrencyRequest {
     /**
-     * 화폐 단위
+     * 화폐 단위.
      */
     @NotBlank
     private String unit;
