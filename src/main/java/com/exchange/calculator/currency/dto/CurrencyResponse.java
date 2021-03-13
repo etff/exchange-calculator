@@ -1,6 +1,7 @@
 package com.exchange.calculator.currency.dto;
 
-import java.math.BigDecimal;
+import com.exchange.calculator.domain.Currency;
+
 import java.text.DecimalFormat;
 
 /**
@@ -14,9 +15,9 @@ public class CurrencyResponse {
     /**
      * 수취 금액.
      */
-    private BigDecimal amount;
+    private Currency amount;
 
-    public CurrencyResponse(boolean success, BigDecimal amount) {
+    public CurrencyResponse(boolean success, Currency amount) {
         this.success = success;
         this.amount = amount;
     }
@@ -27,6 +28,6 @@ public class CurrencyResponse {
 
     public String getAmount() {
         DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
-        return decimalFormat.format(amount);
+        return decimalFormat.format(amount.getAmount());
     }
 }

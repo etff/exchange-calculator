@@ -4,6 +4,7 @@ import com.exchange.calculator.currency.dto.ApiResponse;
 import com.exchange.calculator.currency.dto.CurrencyRequest;
 import com.exchange.calculator.currency.dto.CurrencyResponse;
 import com.exchange.calculator.currency.infra.CurrencyRateClient;
+import com.exchange.calculator.domain.Currency;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class CurrencyApplication {
      */
     public CurrencyResponse getCurrencyData(String unit) throws UnsupportedEncodingException {
         final ApiResponse apiResponse = getApiResponse();
-        return new CurrencyResponse(apiResponse.isSuccess(), apiResponse.getAmount(unit));
+        return new CurrencyResponse(apiResponse.isSuccess(), Currency.of(apiResponse.getAmount(unit)));
     }
 
     /**
@@ -39,8 +40,12 @@ public class CurrencyApplication {
      */
     public CurrencyResponse calculateCurrency(CurrencyRequest request) throws UnsupportedEncodingException {
         final ApiResponse apiResponse = getApiResponse();
-        final BigDecimal result = apiResponse.getAmount(request.getUnit()).multiply(request.getAmount());
-        return new CurrencyResponse(apiResponse.isSuccess(), result);
+
+        final BigDecimal apiResponseAmount = apiResponse.getAmount(request.getUnit());
+        final Currency unitCurrency = Currency.of(apiResponseAmount);
+        final Currency currencyResult = unitCurrency.times(request.getAmount());
+
+        return new CurrencyResponse(apiResponse.isSuccess(), currencyResult);
     }
 
     private ApiResponse getApiResponse() throws UnsupportedEncodingException {

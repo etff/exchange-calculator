@@ -3,6 +3,7 @@ package com.exchange.calculator.currency.ui;
 import com.exchange.calculator.currency.application.CurrencyApplication;
 import com.exchange.calculator.currency.dto.CurrencyRequest;
 import com.exchange.calculator.currency.dto.CurrencyResponse;
+import com.exchange.calculator.domain.Currency;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -51,7 +52,7 @@ class CurrencyRestControllerTest {
 
             @BeforeEach
             void setUp() throws UnsupportedEncodingException {
-                response = new CurrencyResponse(true, BigDecimal.valueOf(1000));
+                response = new CurrencyResponse(true, Currency.of(BigDecimal.valueOf(1000)));
 
                 given(currencyApplication.getCurrencyData(eq(unit)))
                         .willReturn(response);
@@ -80,7 +81,7 @@ class CurrencyRestControllerTest {
             @BeforeEach
             void setUp() throws UnsupportedEncodingException {
                 request = new CurrencyRequest("KRW", BigDecimal.valueOf(100));
-                response = new CurrencyResponse(true, BigDecimal.valueOf(1000));
+                response = new CurrencyResponse(true, Currency.of(BigDecimal.valueOf(1000)));
 
                 given(currencyApplication.calculateCurrency(any(CurrencyRequest.class)))
                         .willReturn(response);
