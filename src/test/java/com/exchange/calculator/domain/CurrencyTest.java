@@ -39,6 +39,6 @@ class CurrencyTest {
         Currency currency = Currency.of(1000);
 
         Currency result = currency.times(BigDecimal.TEN);
-        assertThat(result.getAmount()).isEqualTo(BigDecimal.valueOf(10000.0));
+        assertThat(result.getAmount()).isEqualTo(BigDecimal.valueOf(10000));
     }
 }
