@@ -26,7 +26,9 @@ public class InMemoryCurrencyRateClient implements CurrencyRateClient {
             apiResponse = mapper.readValue(sample, ApiResponse.class);
         } catch (JsonProcessingException e) {
             log.info(e.getMessage());
-            apiResponse = new ApiResponse();
+            apiResponse = ApiResponse.builder()
+                    .success(false)
+                    .build();
         }
         return apiResponse;
     }

@@ -5,8 +5,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Primary;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
@@ -31,24 +36,29 @@ public class ApiCurrencyRateClient implements CurrencyRateClient {
 
     /**
      * 환율 정보를 가져옵니다.
+     *
      * @return API 응답결과
      * @throws UnsupportedEncodingException
      */
+    @Cacheable(value = "getCurrency")
     @Override
     public ApiResponse retrieveCurrency() throws UnsupportedEncodingException {
         final ObjectMapper mapper = new ObjectMapper();
         final ResponseEntity<String> respEntity = getCurrencyFromApi();
         final String body = respEntity.getBody();
-        ApiResponse ApiResponse;
+        ApiResponse apiResponse;
 
         try {
-            ApiResponse = mapper.readValue(body, ApiResponse.class);
+            apiResponse = mapper.readValue(body, ApiResponse.class);
         } catch (JsonProcessingException e) {
             log.info(e.getMessage());
-            ApiResponse = new ApiResponse();
+            apiResponse = ApiResponse.builder()
+                    .success(false)
+                    .build();
         }
-        return ApiResponse;
+        return apiResponse;
     }
+
 
     private ResponseEntity<String> getCurrencyFromApi() throws UnsupportedEncodingException {
         final String decodeServiceKey = URLDecoder.decode(serviceKey, UTF8);
